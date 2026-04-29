@@ -1,0 +1,6 @@
+
+> backend@1.0.0 dev
+> node server.js
+
+◇ injected env (3) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+Server running on port 5000

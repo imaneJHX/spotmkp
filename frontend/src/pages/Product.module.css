@@ -1,0 +1,276 @@
+.page {
+  padding: 28px clamp(20px, 4vw, 52px) 64px;
+  background:
+    radial-gradient(circle at top left, rgba(243, 216, 227, 0.32), transparent 24%),
+    #fffdfd;
+}
+
+.backLink {
+  width: fit-content;
+  margin-bottom: 18px;
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  color: var(--color-ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: rgba(242, 213, 224, 0.24);
+}
+
+.layout,
+.brandSection {
+  border-radius: 28px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.layout {
+  padding: clamp(22px, 4vw, 34px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.mediaPanel,
+.imageWrap {
+  border-radius: 24px;
+}
+
+.mediaPanel {
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(255, 246, 249, 0.96), rgba(245, 235, 238, 0.96));
+}
+
+.imageWrap {
+  overflow: hidden;
+  aspect-ratio: 1 / 1.08;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+}
+
+.imageWrap img {
+  width: min(100%, 420px);
+  max-height: 460px;
+  object-fit: contain;
+  transform-origin: center center;
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s ease;
+}
+
+.mediaPanel:hover .imageWrap img {
+  transform: scale(1.03);
+  filter: saturate(1.03);
+}
+
+.detailsPanel {
+  padding: 8px 2px;
+}
+
+.headerMeta,
+.eyebrow,
+.brandCard span {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.headerMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--color-accent-deep);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.detailsPanel h1,
+.brandSection h2 {
+  margin: 14px 0 0;
+  color: var(--color-ink);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  font-family: var(--font-display);
+}
+
+.detailsPanel h1 {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+}
+
+.description {
+  max-width: 54ch;
+  margin: 18px 0 0;
+  color: var(--color-copy);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+.priceBlock {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.priceBlock strong {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  line-height: 0.92;
+}
+
+.priceBlock span {
+  color: var(--color-muted);
+}
+
+.benefitRow {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.benefitChip {
+  padding: 10px 12px;
+  border-radius: 999px;
+  color: var(--color-accent-deep);
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: rgba(242, 213, 224, 0.24);
+}
+
+.actions {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 54px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.primaryButton {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-deep));
+  box-shadow: 0 18px 30px rgba(141, 35, 77, 0.2);
+}
+
+.secondaryButton {
+  color: var(--color-ink);
+  background: rgba(242, 213, 224, 0.22);
+}
+
+.primaryButton:hover,
+.secondaryButton:hover {
+  transform: translateY(-2px);
+}
+
+.serviceGrid {
+  margin-top: 30px;
+  display: grid;
+  gap: 12px;
+}
+
+.serviceCard,
+.brandCard {
+  border-radius: 20px;
+  border: 1px solid var(--color-line);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.serviceCard {
+  padding: 18px;
+  display: flex;
+  gap: 12px;
+}
+
+.serviceCard svg {
+  margin-top: 3px;
+  color: var(--color-accent-deep);
+}
+
+.serviceCard strong,
+.brandCard h3 {
+  color: var(--color-ink);
+}
+
+.serviceCard p,
+.brandCard p {
+  margin: 6px 0 0;
+  color: var(--color-copy);
+  line-height: 1.66;
+}
+
+.brandSection {
+  margin-top: 24px;
+  padding: clamp(22px, 4vw, 32px);
+}
+
+.eyebrow,
+.brandCard span {
+  color: var(--color-accent-deep);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.brandSection h2 {
+  max-width: 14ch;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.brandGrid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.brandCard {
+  padding: 20px;
+}
+
+.brandCard h3 {
+  margin: 12px 0 0;
+  font-size: 1.18rem;
+}
+
+.error {
+  color: var(--color-accent-deep);
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
+  .layout,
+  .brandGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .brandSection h2 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .layout,
+  .brandGrid {
+    grid-template-columns: 1fr;
+  }
+}

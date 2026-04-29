@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+  color-scheme: light;
+  --color-bg: #fdfaf8;
+  --color-accent: #c9726a;
+  --color-accent-light: #f2e8e5;
+  --color-text: #2b1f1c;
+  --color-muted: #9a7a74;
+  --color-border: #ede4df;
+  --color-ivory: var(--color-bg);
+  --color-cream: #f7efeb;
+  --color-rose-cloud: #f9ebed;
+  --color-rose-soft: #f0d7dd;
+  --color-rose-wash: rgba(240, 215, 221, 0.46);
+  --color-surface: #ffffff;
+  --color-surface-strong: #ffffff;
+  --color-ink: var(--color-text);
+  --color-copy: var(--color-muted);
+  --color-line: rgba(237, 228, 223, 1);
+  --color-accent-deep: var(--color-accent);
+  --color-accent-dark: var(--color-text);
+  --color-gold: #b38a62;
+  --shadow-soft: 0 12px 30px rgba(43, 31, 28, 0.05);
+  --shadow-medium: 0 18px 42px rgba(43, 31, 28, 0.08);
+  --shadow-strong: 0 22px 56px rgba(43, 31, 28, 0.12);
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable both-edges;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+body[data-language='ar'] {
+  text-align: right;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+#root {
+  isolation: isolate;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  direction: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+::selection {
+  color: #ffffff;
+  background: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

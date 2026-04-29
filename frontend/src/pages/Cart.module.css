@@ -1,0 +1,312 @@
+.page {
+  width: min(100%, 1500px);
+  margin: 0 auto;
+  padding: 24px clamp(18px, 4vw, 48px) calc(82px + env(safe-area-inset-bottom));
+}
+
+.hero,
+.itemsPanel,
+.orderCard,
+.emptyState {
+  border-radius: 30px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.34fr);
+  gap: 20px;
+  padding: clamp(24px, 4vw, 34px);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.76), transparent 24%),
+    linear-gradient(145deg, rgba(255, 249, 245, 0.98), rgba(247, 237, 239, 0.96));
+}
+
+.heroCopy {
+  display: grid;
+  gap: 14px;
+}
+
+.eyebrow {
+  color: var(--color-accent-deep);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero h1,
+.emptyState h2 {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+}
+
+.hero p,
+.emptyState p,
+.orderCard p {
+  color: var(--color-copy);
+  line-height: 1.72;
+}
+
+.summaryCard,
+.itemCard {
+  border-radius: 24px;
+  border: 1px solid rgba(75, 38, 49, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 28px rgba(79, 43, 55, 0.08);
+}
+
+.summaryCard {
+  padding: 22px;
+  display: grid;
+  align-content: center;
+  gap: 8px;
+}
+
+.summaryCard span,
+.orderMeta span,
+.itemMeta span {
+  color: var(--color-accent-deep);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.summaryCard strong,
+.orderMeta strong {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 0.94;
+}
+
+.summaryCard p {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.layout {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.32fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.itemsPanel {
+  padding: 18px;
+  display: grid;
+  gap: 16px;
+}
+
+.itemCard {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 16px;
+}
+
+.itemMedia {
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.84), transparent 30%),
+    linear-gradient(180deg, rgba(255, 250, 246, 0.98), rgba(244, 232, 236, 0.96));
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.itemMedia img {
+  width: 100%;
+  max-height: 130px;
+  object-fit: contain;
+}
+
+.itemContent {
+  display: grid;
+  gap: 14px;
+}
+
+.itemMeta {
+  display: grid;
+  gap: 6px;
+}
+
+.itemMeta strong {
+  color: var(--color-ink);
+  font-size: 1.06rem;
+  line-height: 1.45;
+}
+
+.itemFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.quantityControl {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(243, 225, 231, 0.46);
+}
+
+.quantityControl button {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: inset 0 0 0 1px rgba(75, 38, 49, 0.08);
+}
+
+.quantityControl span {
+  min-width: 18px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.itemActions {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+
+.itemActions strong {
+  color: var(--color-accent-deep);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.removeButton,
+.primaryButton,
+.secondaryButton {
+  min-height: 48px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 16px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  transition:
+    transform 0.24s ease,
+    background-color 0.24s ease,
+    color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.removeButton,
+.secondaryButton {
+  color: var(--color-accent-deep);
+  background: rgba(246, 237, 239, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(91, 50, 64, 0.08);
+}
+
+.primaryButton {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-deep));
+  box-shadow: 0 18px 30px rgba(135, 70, 92, 0.22);
+}
+
+.removeButton:hover,
+.removeButton:focus-visible,
+.primaryButton:hover,
+.primaryButton:focus-visible,
+.secondaryButton:hover,
+.secondaryButton:focus-visible {
+  transform: translateY(-2px);
+}
+
+.orderCard,
+.emptyState {
+  padding: 24px;
+}
+
+.orderCard {
+  display: grid;
+  gap: 16px;
+}
+
+.orderMeta {
+  display: grid;
+  gap: 8px;
+}
+
+.orderActions {
+  display: grid;
+  gap: 12px;
+}
+
+.emptyState {
+  margin-top: 28px;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible,
+.removeButton:focus-visible,
+.quantityControl button:focus-visible {
+  outline: 2px solid rgba(196, 118, 144, 0.28);
+  outline-offset: 4px;
+}
+
+@media (max-width: 1024px) {
+  .hero,
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 20px 14px calc(88px + env(safe-area-inset-bottom));
+  }
+
+  .itemCard {
+    grid-template-columns: 1fr;
+  }
+
+  .itemMedia img {
+    max-height: 180px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding: 20px;
+  }
+
+  .itemFooter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .itemActions,
+  .removeButton,
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+}

@@ -1,0 +1,51 @@
+.viewport {
+  position: fixed;
+  top: 104px;
+  right: clamp(14px, 3vw, 32px);
+  z-index: 120;
+  display: grid;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.toast {
+  min-width: min(90vw, 248px);
+  padding: 14px 16px;
+  border-radius: 18px;
+  color: var(--color-accent-dark);
+  font-size: 0.94rem;
+  font-weight: 800;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.82), transparent 32%),
+    linear-gradient(145deg, rgba(255, 250, 246, 0.98), rgba(243, 226, 232, 0.96));
+  border: 1px solid rgba(139, 67, 92, 0.12);
+  box-shadow:
+    0 24px 46px rgba(70, 38, 47, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.66);
+  animation: slideIn 0.28s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -12px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (max-width: 640px) {
+  .viewport {
+    top: auto;
+    right: 14px;
+    bottom: calc(18px + env(safe-area-inset-bottom));
+    left: 14px;
+  }
+
+  .toast {
+    min-width: 0;
+  }
+}

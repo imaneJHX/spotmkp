@@ -1,0 +1,348 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 0.5px solid var(--color-border);
+  background: linear-gradient(180deg, #fffefd 0%, #fbf4f1 100%);
+  box-shadow: 0 14px 34px rgba(43, 31, 28, 0.05);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 114, 106, 0.24);
+  box-shadow: 0 20px 44px rgba(43, 31, 28, 0.09);
+}
+
+.cardFragrance {
+  background: linear-gradient(180deg, #fffefd 0%, #fcf6f3 100%);
+}
+
+.mediaShell {
+  position: relative;
+}
+
+.mediaLink,
+.mediaButton {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1 / 1.02;
+  padding: 24px 20px 16px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.84), transparent 36%),
+    linear-gradient(180deg, rgba(255, 252, 250, 0.98), rgba(245, 233, 228, 0.86));
+}
+
+.mediaButton {
+  text-align: start;
+  cursor: zoom-in;
+}
+
+.mediaLinkFragrance,
+.mediaButtonFragrance {
+  aspect-ratio: 1 / 0.9;
+  padding: 18px 18px 10px;
+  align-items: end;
+  background: transparent;
+}
+
+.wishlistButton {
+  position: absolute;
+  top: 14px;
+  inset-inline-end: 14px;
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--color-muted);
+  background: rgba(255, 255, 255, 0.94);
+  border: 0.5px solid rgba(237, 228, 223, 0.9);
+  transition:
+    transform 0.24s ease,
+    background-color 0.24s ease,
+    color 0.24s ease;
+}
+
+.wishlistButton:hover,
+.wishlistButton:focus-visible {
+  transform: translateY(-2px);
+}
+
+.wishlistButtonActive {
+  color: #ffffff;
+  background: var(--color-accent);
+}
+
+.imageGlow {
+  position: absolute;
+  inset: auto 16px 18px;
+  height: 28%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 114, 106, 0.12), transparent 72%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.image {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 150px);
+  max-height: 150px;
+  object-fit: contain;
+  transform-origin: center center;
+  transition: transform 0.34s ease;
+}
+
+.imageFragrance {
+  width: min(100%, 182px);
+  max-height: 206px;
+}
+
+.card:hover .image {
+  transform: scale(1.04);
+}
+
+.badge,
+.brand,
+.category,
+.stockPill,
+.stockPillMuted {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.badge {
+  position: absolute;
+  top: 14px;
+  inset-inline-start: 14px;
+  z-index: 2;
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 700;
+  background: rgba(43, 31, 28, 0.82);
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 17px 17px 18px;
+  min-width: 0;
+}
+
+.brandRow,
+.metaRow,
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand,
+.category {
+  color: var(--color-muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.brand {
+  max-width: 65%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.stockPill,
+.stockPillMuted {
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.stockPill {
+  color: var(--color-accent);
+  background: rgba(242, 232, 229, 0.92);
+}
+
+.stockPillMuted {
+  color: var(--color-muted);
+  background: rgba(240, 236, 233, 0.94);
+}
+
+.price {
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d1a15b;
+}
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.ratingValue {
+  color: var(--color-muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.titleLink,
+.titleButton {
+  text-align: start;
+  min-width: 0;
+}
+
+.title {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-wrap: anywhere;
+}
+
+.titleButton:hover .title,
+.titleButton:focus-visible .title,
+.titleLink:hover .title,
+.titleLink:focus-visible .title {
+  color: var(--color-accent);
+}
+
+.actions {
+  margin-top: auto;
+  padding-top: 6px;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cartButton,
+.linkButton {
+  font-size: 11px;
+  line-height: 1.2;
+  transition:
+    transform 0.24s ease,
+    background-color 0.24s ease,
+    color 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease,
+    text-decoration-color 0.24s ease;
+}
+
+.cartButton {
+  flex: 1 1 auto;
+  min-height: 34px;
+  min-width: 0;
+  padding: 8px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--color-accent);
+  box-shadow: 0 10px 22px rgba(201, 114, 106, 0.16);
+}
+
+.linkButton {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  min-height: auto;
+  color: var(--color-muted);
+  font-weight: 500;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.18em;
+}
+
+.cartButton:hover,
+.cartButton:focus-visible {
+  transform: translateY(-2px);
+}
+
+.linkButton:hover,
+.linkButton:focus-visible {
+  color: var(--color-text);
+  text-decoration-color: currentColor;
+}
+
+.titleButton:focus-visible,
+.titleLink:focus-visible,
+.cartButton:focus-visible,
+.linkButton:focus-visible,
+.wishlistButton:focus-visible,
+.mediaButton:focus-visible,
+.mediaLink:focus-visible {
+  outline: 2px solid rgba(201, 114, 106, 0.24);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .mediaLink,
+  .mediaButton {
+    padding: 22px 18px 14px;
+  }
+
+  .mediaLinkFragrance,
+  .mediaButtonFragrance {
+    padding: 16px 16px 8px;
+  }
+
+  .image {
+    width: min(100%, 138px);
+    max-height: 138px;
+  }
+
+  .imageFragrance {
+    width: min(100%, 164px);
+    max-height: 184px;
+  }
+
+  .body {
+    padding: 14px;
+  }
+}

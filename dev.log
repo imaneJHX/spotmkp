@@ -1,0 +1,32 @@
+
+> spotmkp@1.0.0 dev
+> concurrently "npm run dev:backend" "npm run dev:frontend"
+
+[1] 
+[1] > spotmkp@1.0.0 dev:frontend
+[1] > npm --prefix frontend run dev -- --host 0.0.0.0
+[1] 
+[0] 
+[0] > spotmkp@1.0.0 dev:backend
+[0] > npm --prefix backend run dev
+[0] 
+[0] 
+[0] > backend@1.0.0 dev
+[0] > node server.js
+[0] 
+[1] 
+[1] > frontend@0.0.0 predev
+[1] > node scripts/generate-products-data.mjs
+[1] 
+[1] [products] Generated 188 product entries from C:\coding\spotmkp\data\products.json
+[1] 
+[1] > frontend@0.0.0 dev
+[1] > vite --host 0.0.0.0
+[1] 
+[0] ◇ injected env (3) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[0] Server running on port 5000
+[1] 
+[1]   [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m283[22m[2m[0m ms[22m
+[1] 
+[1]   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+[1]   [32m➜[39m  [1mNetwork[22m: [36mhttp://10.93.149.151:[1m5173[22m/[39m

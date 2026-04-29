@@ -1,0 +1,44 @@
+{
+  "name": "spotmkp",
+  "version": "1.0.0",
+  "description": "Beauty Spot e-commerce website plus local Instagram media tooling.",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev -- --host 0.0.0.0",
+    "scrape:zwine": "node scripts/scrape-zwine.js",
+    "scrape:zwine:images": "node scripts/download-images.js --config config/zwine.config.js",
+    "scrape:zwine:import": "node scripts/import-to-mongodb.js",
+    "scrape:zwine:all": "npm run scrape:zwine && npm run scrape:zwine:images",
+    "scrape:products": "node scripts/scrape-products.js",
+    "scrape:products:images": "node scripts/download-images.js",
+    "scrape:products:all": "npm run scrape:products && npm run scrape:products:images",
+    "reels:extract": "node scripts/extract-reel-frames.js",
+    "reels:thumbs": "node scripts/extract-reel-frames.js --thumbnail-middle",
+    "reels:both": "node scripts/extract-reel-frames.js --mode both",
+    "ig:download": "node scripts/download-instagram-media.js",
+    "ig:download:api": "node scripts/download-instagram-media.js --mode api",
+    "ig:download:simple": "node scripts/download-instagram-media.js --mode scrape",
+    "ig:transform": "node scripts/transform-media-for-site.js",
+    "ig:sync": "npm run ig:download && npm run ig:transform",
+    "test": "echo \"No root tests configured\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "axios": "^1.13.1",
+    "cheerio": "^1.1.2",
+    "dotenv": "^16.6.1",
+    "playwright": "^1.55.1",
+    "puppeteer": "^24.7.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

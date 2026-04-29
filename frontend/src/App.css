@@ -1,0 +1,11 @@
+.appShell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+}
+
+.pageContent {
+  flex: 1;
+  min-width: 0;
+}

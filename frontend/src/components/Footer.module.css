@@ -1,0 +1,234 @@
+.footer {
+  padding: 18px clamp(18px, 4vw, 40px) 30px;
+}
+
+.surface {
+  padding: clamp(26px, 5vw, 44px);
+  border: 0.5px solid rgba(237, 228, 223, 0.9);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at top right, rgba(242, 226, 220, 0.5), transparent 28%),
+    linear-gradient(180deg, #fffdfb 0%, #fcf8f6 52%, #f7ede8 100%);
+  box-shadow:
+    0 18px 38px rgba(43, 31, 28, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.topRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(26px, 4vw, 46px);
+  align-items: start;
+}
+
+.brandBlock {
+  display: grid;
+  gap: 14px;
+}
+
+.brandPill,
+.columnLabel {
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+}
+
+.brandPill {
+  padding: 9px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 0.5px solid rgba(237, 228, 223, 0.94);
+  color: var(--color-accent);
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.brandBlock h2 {
+  max-width: 12ch;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.brandBlock p {
+  max-width: 48ch;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+.linkGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.linkColumn {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.columnLabel {
+  color: var(--color-text);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.linkColumn a {
+  width: fit-content;
+  max-width: 100%;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  transition:
+    color 0.24s ease,
+    transform 0.24s ease;
+}
+
+.linkColumn a:hover,
+.linkColumn a:focus-visible {
+  color: var(--color-accent);
+  transform: translateX(2px);
+}
+
+.signalRow {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.signalCard {
+  padding: 18px 18px 19px;
+  display: flex;
+  gap: 12px;
+  border: 0.5px solid rgba(237, 228, 223, 0.92);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 237, 232, 0.82));
+  box-shadow: 0 10px 24px rgba(43, 31, 28, 0.04);
+}
+
+.signalCard svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-accent);
+}
+
+.signalCard strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.signalCard p {
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.bottomRow {
+  margin-top: 26px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 0.5px solid rgba(237, 228, 223, 0.94);
+}
+
+.bottomRow p {
+  color: rgba(97, 74, 69, 0.76);
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.badgeRow span {
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 0.5px solid rgba(237, 228, 223, 0.94);
+  color: var(--color-muted);
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(248, 238, 234, 0.85);
+  transition:
+    color 0.24s ease,
+    background-color 0.24s ease,
+    border-color 0.24s ease,
+    transform 0.24s ease;
+}
+
+.badgeRow span:hover {
+  color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(201, 114, 106, 0.2);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 980px) {
+  .topRow {
+    grid-template-columns: 1fr;
+  }
+
+  .linkGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .signalRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .linkGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding-inline: 14px;
+    padding-bottom: 18px;
+  }
+
+  .surface {
+    padding: 22px 18px;
+    border-radius: 24px;
+  }
+
+  .brandBlock h2 {
+    max-width: none;
+  }
+
+  .linkGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .signalCard {
+    padding: 16px;
+  }
+
+  .badgeRow span {
+    font-size: 10px;
+  }
+}

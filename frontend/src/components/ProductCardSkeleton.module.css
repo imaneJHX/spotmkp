@@ -1,0 +1,142 @@
+.card {
+  min-height: 100%;
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(77, 43, 55, 0.09);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 248, 245, 0.96));
+  box-shadow: 0 18px 42px rgba(70, 38, 47, 0.08);
+}
+
+.media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1 / 1.02;
+  padding: 28px 24px 20px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.84), transparent 32%),
+    linear-gradient(180deg, rgba(255, 250, 246, 0.96), rgba(245, 233, 237, 0.94));
+}
+
+.imageGlow {
+  position: absolute;
+  inset: auto 18px 18px;
+  height: 30%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 118, 144, 0.14), transparent 72%);
+  filter: blur(6px);
+}
+
+.body {
+  display: grid;
+  gap: 12px;
+  padding: 20px 20px 22px;
+}
+
+.topRow,
+.midRow,
+.actionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.line,
+.badge,
+.pill,
+.image,
+.primaryButton,
+.secondaryButton {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(244, 229, 233, 0.76) 0%, rgba(255, 255, 255, 0.95) 46%, rgba(244, 229, 233, 0.76) 100%);
+  background-size: 220% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 84px;
+  height: 30px;
+  border-radius: 999px;
+}
+
+.pill {
+  width: 72px;
+  height: 28px;
+  border-radius: 999px;
+}
+
+.image {
+  width: min(100%, 188px);
+  aspect-ratio: 0.82;
+  border-radius: 30px;
+}
+
+.line {
+  height: 12px;
+  border-radius: 999px;
+}
+
+.lineSmall {
+  width: 34%;
+}
+
+.lineTiny {
+  width: 28%;
+}
+
+.linePrice {
+  width: 26%;
+  height: 20px;
+}
+
+.lineTitle {
+  width: 84%;
+  height: 18px;
+}
+
+.lineTitleAlt {
+  width: 62%;
+  height: 18px;
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 36px;
+  border-radius: 10px;
+}
+
+.primaryButton {
+  flex: 1 1 auto;
+}
+
+.secondaryButton {
+  flex: 0 0 92px;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .media {
+    padding: 24px 20px 18px;
+  }
+
+  .body {
+    padding: 18px;
+  }
+}
