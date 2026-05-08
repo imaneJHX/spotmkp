@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import api from '../lib/api';
-import BrandMark from '../components/BrandMark';
 import localProducts from '../data/products';
 import brands from '../data/brands';
 import { getBrandProductCount, getBrandShopHref, sortBrandsAlphabetically } from '../lib/brands';
@@ -10,6 +9,19 @@ import { useLanguage } from '../context/LanguageContext';
 import styles from './Brands.module.css';
 
 const ALPHABET = ['all', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
+const LOCAL_IMAGE_BRAND_IDS = [
+  'clinique',
+  'nyx',
+  'mac',
+  'lancome',
+  'elf-cosmetics',
+  'anastasia-beverly-hills',
+  'rare-beauty',
+  'tarte',
+  'fenty-beauty',
+  'benefit-cosmetics',
+];
+const LOCAL_IMAGE_EXTENSIONS = ['png', 'jpg', 'jpeg', 'webp', 'svg'];
 
 function getFilterLetter(name) {
   const firstCharacter = String(name || '').trim().charAt(0).toUpperCase();
@@ -18,6 +30,38 @@ function getFilterLetter(name) {
 
 function getSearchText(brand) {
   return [brand.name, brand.category, ...(brand.aliases || [])].join(' ').toLowerCase();
+}
+
+function getLocalBrandImageSources(brandId) {
+  return LOCAL_IMAGE_EXTENSIONS.flatMap((extension) => [
+    `/brands/${brandId}.${extension}`,
+    `/assets/brands/${brandId}.${extension}`,
+  ]);
+}
+
+function LocalBrandLogo({ brand }) {
+  const sources = useMemo(() => getLocalBrandImageSources(brand.id), [brand.id]);
+  const [sourceIndex, setSourceIndex] = useState(0);
+  const activeSource = sources[sourceIndex] || null;
+
+  useEffect(() => {
+    setSourceIndex(0);
+  }, [sources]);
+
+  if (!activeSource) {
+    return <span className={styles.logoFallback}>{brand.name}</span>;
+  }
+
+  return (
+    <img
+      className={styles.logoImage}
+      src={activeSource}
+      alt={brand.name}
+      loading="lazy"
+      decoding="async"
+      onError={() => setSourceIndex((currentValue) => currentValue + 1)}
+    />
+  );
 }
 
 const Brands = () => {
@@ -60,7 +104,9 @@ const Brands = () => {
   }, [hasLocalProducts]);
 
   const brandCards = useMemo(() => {
-    return sortBrandsAlphabetically(brands).map((brand) => ({
+    const localLogoBrands = brands.filter((brand) => LOCAL_IMAGE_BRAND_IDS.includes(brand.id));
+
+    return sortBrandsAlphabetically(localLogoBrands).map((brand) => ({
       ...brand,
       productCount: getBrandProductCount(products, brand.id),
       letter: getFilterLetter(brand.name),
@@ -152,11 +198,9 @@ const Brands = () => {
           <div className={styles.grid}>
             {filteredBrands.map((brand) => (
               <Link key={brand.id} className={styles.card} to={getBrandShopHref(brand.id)}>
-                <span className={styles.cardCategory}>{t(`common.categories.${brand.category}`)}</span>
                 <div className={styles.logoShell}>
-                  <BrandMark brand={brand} imageClassName={styles.logoImage} fallbackClassName={styles.initials} />
+                  <LocalBrandLogo brand={brand} />
                 </div>
-                <strong className={styles.name}>{brand.name}</strong>
                 <span className={styles.count}>
                   {brand.productCount > 0
                     ? t('brands.productCount', { count: brand.productCount })

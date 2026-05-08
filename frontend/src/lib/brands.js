@@ -82,17 +82,26 @@ export function resolveBrandLogo(brand, clientId) {
 
 export function matchesBrand(product, brandOrId) {
   const productBrand = normalizeValue(product?.brand);
-
-  if (!productBrand) {
-    return false;
-  }
+  const productName = normalizeValue(product?.name);
 
   const brand = typeof brandOrId === 'string' ? getBrandById(brandOrId) : brandOrId;
   const aliases = brand ? getBrandAliases(brand) : [brandOrId];
 
   return aliases.some((alias) => {
     const normalizedAlias = normalizeValue(alias);
-    return normalizedAlias && productBrand === normalizedAlias;
+    if (!normalizedAlias) {
+      return false;
+    }
+
+    if (productBrand === normalizedAlias) {
+      return true;
+    }
+
+    if (normalizedAlias.length < 3 || !productName) {
+      return false;
+    }
+
+    return ` ${productName} `.includes(` ${normalizedAlias} `) || productName.startsWith(normalizedAlias);
   });
 }
 

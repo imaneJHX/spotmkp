@@ -1,0 +1,60 @@
+
+> spotmkp@1.0.0 dev
+> concurrently "npm run dev:backend" "npm run dev:frontend"
+
+[1] 
+[1] > spotmkp@1.0.0 dev:frontend
+[1] > npm --prefix frontend run dev -- --host 0.0.0.0
+[1] 
+[0] 
+[0] > spotmkp@1.0.0 dev:backend
+[0] > npm --prefix backend run dev
+[0] 
+[0] 
+[0] > backend@1.0.0 dev
+[0] > node server.js
+[0] 
+[1] 
+[1] > frontend@0.0.0 predev
+[1] > node scripts/generate-products-data.mjs
+[1] 
+[1] [products] Generated 212 product entries from C:\coding\spotmkp\data\products.json
+[1] 
+[1] > frontend@0.0.0 dev
+[1] > vite --host 0.0.0.0
+[1] 
+[0] ◇ injected env (3) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+[0] Server running on port 5000
+[1] 
+[1]   [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m612[22m[2m[0m ms[22m
+[1] 
+[1]   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+[1]   [32m➜[39m  [1mNetwork[22m: [36mhttp://10.97.184.187:[1m5173[22m/[39m
+[0] MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+[0] npm run dev:backend exited with code 0
+[1] [2m14:41:58[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx[22m
+[1] [2m14:42:33[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx[22m
+[1] [2m14:42:47[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m14:42:47[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m14:43:48[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m14:43:48[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m14:45:53[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx[22m
+[1] [2m14:48:01[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m14:48:01[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m14:54:50[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx[22m
+[1] [2m14:55:08[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Home.jsx, /src/pages/Shop.jsx, /src/components/BrandMark.jsx[22m
+[1] [2m14:55:51[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m14:55:51[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m14:58:55[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx[22m
+[1] [2m14:59:09[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Home.jsx, /src/pages/Shop.jsx, /src/components/BrandMark.jsx[22m
+[1] [2m14:59:40[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m14:59:40[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m15:00:28[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx, /src/components/BrandMark.jsx[22m
+[1] [2m15:01:27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m15:01:27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m15:02:42[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx[22m
+[1] [2m15:03:37[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m15:03:37[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m15:05:07[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx[22m
+[1] [2m15:05:50[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m
+[1] [2m15:05:50[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Brands.jsx, /src/pages/Product.jsx, /src/pages/Shop.jsx, /src/pages/Home.jsx[22m

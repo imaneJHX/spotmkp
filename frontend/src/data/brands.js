@@ -20,6 +20,19 @@ const brands = [
     ]
   },
   {
+    id: "anastasia-beverly-hills",
+    name: "Anastasia Beverly Hills",
+    domain: "anastasiabeverlyhills.com",
+    logo: null,
+    logoSource: "brandfetch",
+    category: "makeup",
+    featured: true,
+    aliases: [
+      "anastasia beverly hills",
+      "anastasia"
+    ]
+  },
+  {
     id: "benefit-cosmetics",
     name: "Benefit Cosmetics",
     domain: "benefitcosmetics.com",
@@ -66,6 +79,32 @@ const brands = [
     featured: true,
     aliases: [
       "dior"
+    ]
+  },
+  {
+    id: "elf-cosmetics",
+    name: "e.l.f. Cosmetics",
+    domain: "elfcosmetics.com",
+    logo: null,
+    logoSource: "brandfetch",
+    category: "makeup",
+    featured: true,
+    aliases: [
+      "e.l.f. cosmetics",
+      "e.l.f.",
+      "elf cosmetics"
+    ]
+  },
+  {
+    id: "clinique",
+    name: "Clinique",
+    domain: "clinique.com",
+    logo: null,
+    logoSource: "brandfetch",
+    category: "makeup",
+    featured: true,
+    aliases: [
+      "clinique"
     ]
   },
   {
