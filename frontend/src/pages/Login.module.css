@@ -39,158 +39,43 @@
 .card {
   position: relative;
   z-index: 1;
-  width: min(1100px, 100%);
-  display: grid;
-  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
-  gap: 18px;
-  align-items: stretch;
+  width: min(620px, 100%);
+  display: block;
 }
 
-.showcase,
 .formCard {
   border-radius: 28px;
   border: 0.5px solid rgba(240, 218, 214, 0.96);
   box-shadow: 0 18px 42px rgba(43, 35, 35, 0.05);
 }
 
-.showcase {
-  position: relative;
-  min-height: 620px;
-  padding: clamp(28px, 4vw, 40px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 28px;
-  background:
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.6), transparent 22%),
-    linear-gradient(180deg, rgba(255, 253, 251, 0.94), rgba(247, 231, 228, 0.86) 56%, rgba(244, 223, 218, 0.9) 100%);
+.formBrandLogo {
+  display: inline-grid;
+  justify-items: start;
+  gap: 5px;
 }
 
-.showcase::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background:
-    linear-gradient(130deg, rgba(255, 255, 255, 0.5), transparent 30%),
-    radial-gradient(circle at 78% 20%, rgba(214, 120, 112, 0.12), transparent 18%);
-  pointer-events: none;
-}
-
-.brandRow,
-.copyBlock,
-.metrics {
-  position: relative;
-  z-index: 1;
-}
-
-.brandRow {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.brandMark {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
-  color: #ffffff;
-  font-size: 0.92rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  background: linear-gradient(135deg, #d67870 0%, #c96f67 100%);
-  box-shadow: 0 12px 26px rgba(214, 120, 112, 0.18);
-}
-
-.brandName {
+.formBrandLogo strong {
   color: var(--color-text);
-  font-size: 0.98rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.copyBlock {
-  max-width: 430px;
-}
-
-.kicker {
-  width: fit-content;
-  margin-bottom: 22px;
-  padding: 9px 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 999px;
-  border: 0.5px solid rgba(240, 218, 214, 0.96);
+.formBrandLogo span {
   color: var(--color-accent);
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 600;
-  letter-spacing: 0.08em;
-  background: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.title {
-  margin: 0;
-  color: var(--color-text);
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 4.8vw, 4rem);
-  font-weight: 500;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-}
-
-.subtitle {
-  margin: 14px 0 0;
-  color: #8f6e6a;
-  font-size: 1.02rem;
-  font-weight: 500;
-}
-
-.description,
-.reassurance {
-  color: var(--color-muted);
-  font-size: 0.96rem;
-  line-height: 1.82;
-}
-
-.description {
-  margin: 16px 0 0;
-}
-
-.reassurance {
-  margin: 14px 0 0;
-  max-width: 32ch;
-}
-
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.metricItem {
-  padding: 18px 18px 20px;
-  border-radius: 20px;
-  border: 0.5px solid rgba(240, 218, 214, 0.96);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 10px 24px rgba(43, 35, 35, 0.04);
-}
-
-.metricItem strong {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--color-text);
-  font-size: 0.98rem;
-  font-weight: 600;
-}
-
-.metricItem span {
-  color: var(--color-muted);
-  font-size: 0.9rem;
-  line-height: 1.6;
+.formBrandLogo:hover strong,
+.formBrandLogo:focus-visible strong {
+  color: var(--color-accent);
 }
 
 .formPanel {
@@ -201,45 +86,44 @@
 
 .formCard {
   width: 100%;
-  padding: clamp(28px, 5vw, 42px);
+  padding: clamp(34px, 5vw, 54px);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 251, 248, 0.92));
 }
 
 .formHeader {
   margin-bottom: 24px;
+  text-align: center;
 }
 
-.logo {
-  margin-bottom: 16px;
-  color: var(--color-accent);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.formBrandLogo {
+  justify-items: center;
+  margin-bottom: 26px;
 }
 
 .formTitle {
   margin: 0;
   color: var(--color-text);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-size: clamp(2.4rem, 4.4vw, 3.45rem);
   font-weight: 500;
   line-height: 1.04;
   letter-spacing: -0.04em;
+  text-align: center;
 }
 
 .formSubtitle {
-  margin: 10px 0 0;
+  margin: 14px 0 0;
   color: var(--color-muted);
-  font-size: 0.98rem;
+  font-size: var(--text-md);
   line-height: 1.7;
+  text-align: center;
 }
 
 .notice {
   margin-bottom: 18px;
   padding: 14px 16px;
   border-radius: 16px;
-  font-size: 0.92rem;
+  font-size: var(--text-base);
   font-weight: 500;
 }
 
@@ -262,7 +146,7 @@
 
 .label {
   color: var(--color-text);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   font-weight: 600;
 }
 
@@ -312,7 +196,7 @@
   outline: none;
   background: transparent;
   color: var(--color-text);
-  font-size: 0.97rem;
+  font-size: var(--text-base);
 }
 
 .input::placeholder {
@@ -351,7 +235,7 @@
   gap: 12px;
   border-radius: 18px;
   color: #ffffff;
-  font-size: 0.98rem;
+  font-size: var(--text-base);
   font-weight: 600;
   background: linear-gradient(135deg, #d67870 0%, #c96f67 100%);
   box-shadow: 0 16px 28px rgba(214, 120, 112, 0.18);
@@ -375,7 +259,7 @@
 
 .secondaryLink {
   color: var(--color-accent);
-  font-size: 0.89rem;
+  font-size: var(--text-sm);
   font-weight: 500;
 }
 
@@ -387,7 +271,7 @@
 .signupText {
   margin: 22px 0 0;
   color: var(--color-muted);
-  font-size: 0.94rem;
+  font-size: var(--text-base);
   text-align: center;
 }
 
@@ -403,12 +287,7 @@
 
 @media (max-width: 960px) {
   .card {
-    grid-template-columns: 1fr;
-  }
-
-  .showcase {
-    min-height: auto;
-    padding: 30px 26px;
+    width: min(620px, 100%);
   }
 }
 
@@ -418,13 +297,6 @@
     padding: 18px;
   }
 
-  .showcase {
-    gap: 22px;
-  }
-
-  .metrics {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 640px) {
@@ -434,10 +306,6 @@
 
   .card {
     gap: 14px;
-  }
-
-  .showcase {
-    padding: 24px 18px;
   }
 
   .formCard {

@@ -14,7 +14,7 @@
   gap: 8px;
   border-radius: 999px;
   color: var(--color-ink);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   background: rgba(242, 213, 224, 0.24);
 }
@@ -83,7 +83,7 @@
   flex-wrap: wrap;
   gap: 12px;
   color: var(--color-accent-deep);
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   font-weight: 800;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .detailsPanel h1 {
-  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-size: var(--text-hero);
 }
 
 .description {
@@ -105,7 +105,7 @@
   margin: 18px 0 0;
   color: var(--color-copy);
   line-height: 1.75;
-  font-size: 1rem;
+  font-size: var(--text-base);
 }
 
 .priceBlock {
@@ -118,7 +118,7 @@
 .priceBlock strong {
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-size: var(--text-2xl);
   line-height: 0.92;
 }
 
@@ -137,7 +137,7 @@
   padding: 10px 12px;
   border-radius: 999px;
   color: var(--color-accent-deep);
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   background: rgba(242, 213, 224, 0.24);
 }
@@ -227,13 +227,13 @@
 .eyebrow,
 .brandCard span {
   color: var(--color-accent-deep);
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   font-weight: 800;
 }
 
 .brandSection h2 {
   max-width: 14ch;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-size: var(--text-xl);
 }
 
 .brandGrid {
@@ -249,7 +249,7 @@
 
 .brandCard h3 {
   margin: 12px 0 0;
-  font-size: 1.18rem;
+  font-size: var(--text-lg);
 }
 
 .error {

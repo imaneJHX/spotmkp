@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Gift, ShieldCheck, Sparkles, Smartphone } from 'lucide-react';
+import { Gift, ShieldCheck, Smartphone } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import styles from './Footer.module.css';
 
@@ -79,10 +79,10 @@ const Footer = () => {
       <div className={styles.surface}>
         <div className={styles.topRow}>
           <div className={styles.brandBlock}>
-            <span className={styles.brandPill}>
-              <Sparkles size={15} strokeWidth={2.1} />
-              Beauty Spot
-            </span>
+            <Link className={styles.footerBrandLogo} to="/" aria-label={t('navbar.homeAria')}>
+              <strong>Beauty Spot</strong>
+              <span>{t('navbar.brandTagline')}</span>
+            </Link>
             <h2>{t('footer.brandTitle')}</h2>
             <p>{t('footer.brandDescription')}</p>
           </div>

@@ -71,55 +71,47 @@
 .brandTop {
   display: flex;
   align-items: center;
-  gap: 14px;
 }
 
-.brandMark {
-  width: 50px;
-  height: 50px;
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
-  color: #141215;
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  background: linear-gradient(135deg, #f8c8dc 0%, #ffeaf2 100%);
-  box-shadow: 0 12px 28px rgba(248, 200, 220, 0.22);
+.brandLogo {
+  display: inline-grid;
+  justify-items: start;
+  gap: 6px;
+  width: fit-content;
 }
 
-.brandName,
-.formLogo {
-  font-size: 0.96rem;
-  font-weight: 700;
+.brandLogo strong {
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.brandLogo span {
+  color: #f8c8dc;
+  font-size: var(--text-2xs);
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.brandLogo:hover strong,
+.brandLogo:focus-visible strong {
+  color: #f8c8dc;
 }
 
 .brandContent {
   max-width: 500px;
 }
 
-.kicker {
-  width: fit-content;
-  margin-bottom: 24px;
-  padding: 10px 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #f8d8e6;
-  font-size: 0.8rem;
-  font-weight: 600;
-  background: rgba(255, 255, 255, 0.04);
-}
-
 .title {
   margin: 0;
   color: #ffffff;
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: var(--text-hero);
   line-height: 0.96;
   letter-spacing: -0.05em;
 }
@@ -128,7 +120,7 @@
   max-width: 500px;
   margin: 20px 0 0;
   color: rgba(255, 255, 255, 0.74);
-  font-size: 1rem;
+  font-size: var(--text-base);
   line-height: 1.85;
 }
 
@@ -148,12 +140,12 @@
 .highlightCard strong {
   display: block;
   margin-bottom: 8px;
-  font-size: 1rem;
+  font-size: var(--text-base);
 }
 
 .highlightCard span {
   color: rgba(255, 255, 255, 0.68);
-  font-size: 0.92rem;
+  font-size: var(--text-base);
   line-height: 1.7;
 }
 
@@ -176,15 +168,11 @@
   margin-bottom: 24px;
 }
 
-.formLogo {
-  color: #f8d3e3;
-}
-
 .formTitle {
-  margin: 16px 0 0;
+  margin: 0;
   color: #ffffff;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: var(--text-2xl);
   line-height: 1.02;
   letter-spacing: -0.05em;
 }
@@ -199,7 +187,7 @@
   margin-bottom: 18px;
   padding: 14px 16px;
   border-radius: 16px;
-  font-size: 0.92rem;
+  font-size: var(--text-base);
   font-weight: 500;
 }
 
@@ -222,7 +210,7 @@
 
 .label {
   color: #f4eff2;
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   font-weight: 600;
 }
 
@@ -263,7 +251,7 @@
   outline: none;
   background: transparent;
   color: #ffffff;
-  font-size: 0.98rem;
+  font-size: var(--text-base);
 }
 
 .input::placeholder {
@@ -304,7 +292,7 @@
   border-radius: 18px;
   cursor: pointer;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: var(--text-base);
   font-weight: 600;
   border: 1px solid rgba(248, 200, 220, 0.12);
   background: linear-gradient(135deg, #cf7ea2 0%, #f8c8dc 100%);
@@ -325,7 +313,7 @@
   margin: 24px 0 0;
   color: rgba(255, 255, 255, 0.62);
   text-align: center;
-  font-size: 0.94rem;
+  font-size: var(--text-base);
 }
 
 .footerLink {

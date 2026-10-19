@@ -9,14 +9,14 @@ import { useLanguage } from '../context/LanguageContext';
 import api from '../lib/api';
 import localProducts from '../data/products';
 import brands from '../data/brands';
-import { getBrandProductCount, getBrandShopHref } from '../lib/brands';
+import { getBrandProductCount, getBrandShopHref, hasLocalBrandLogo } from '../lib/brands';
 import { filterProductsByShopCategory } from '../lib/shopCategories';
 import { formatDisplayText, formatPriceText, getPriceValueMAD } from '../lib/productPresentation';
 import styles from './Home.module.css';
 
 const FALLBACK_IMAGE = '/images/products/product-fallback.svg';
-const HERO_IMAGE_PRIMARY = '/images/hero/beauty-boutique-hero.avif';
-const HERO_IMAGE_FALLBACK = '/images/hero/beauty-boutique-hero.avif';
+const HERO_IMAGE_PRIMARY = '/images/hero/homepage-hero.jpg';
+const HERO_IMAGE_FALLBACK = '/images/hero/homepage-hero.jpg';
 function normalizeCategory(value) {
   return String(value || '').trim().toLowerCase();
 }
@@ -130,30 +130,22 @@ const Home = () => {
   const [heroImageSrc, setHeroImageSrc] = useState(HERO_IMAGE_PRIMARY);
   const homeTitle = t('home.title');
   const homeDescription = t('home.description');
-  const categoryPills = useMemo(
-    () => [
-      { icon: Brush, label: t('common.categories.makeup'), href: '/shop?category=makeup' },
-      { icon: ShieldCheck, label: t('common.categories.skincare'), href: '/shop?category=skincare' },
-      { icon: Flower2, label: t('common.categories.perfumes'), href: '/shop?category=perfumes' },
-      { icon: Package, label: t('common.categories.miniSize'), href: '/shop?category=mini-size' },
-      { icon: Tag, label: t('common.categories.offers'), href: '/shop' },
-    ],
-    [t],
-  );
+  // Category pills removed as per redesign
+  // Redesigned trust items (ships)
   const trustItems = useMemo(
     () => [
-      { icon: Truck, title: t('home.trust1Title'), subtitle: t('home.trust1Subtitle') },
-      { icon: Gift, title: t('home.trust2Title'), subtitle: t('home.trust2Subtitle') },
-      { icon: ShieldCheck, title: t('home.trust3Title'), subtitle: t('home.trust3Subtitle') },
+      { icon: Truck, title: 'Livraison offerte', subtitle: 'dès 350 DH' },
+      { icon: Gift, title: 'Échantillons offerts', subtitle: 'sur chaque commande' },
+      { icon: ShieldCheck, title: 'Paiement sécurisé', subtitle: '100% sécurisé' },
     ],
-    [t],
+    [],
   );
   const categoryThemes = useMemo(
     () => ({
       nouveautes: {
         label: t('home.themes.newLabel'),
         description: t('home.themes.newDescription'),
-        href: '/shop',
+        href: '/shop?sort=newest',
       },
       bestsellers: {
         label: t('home.themes.bestLabel'),
@@ -180,7 +172,7 @@ const Home = () => {
   );
   const featuredBrands = useMemo(() => {
     return brands
-      .filter((brand) => brand.featured)
+      .filter((brand) => brand.featured && hasLocalBrandLogo(brand))
       .slice(0, 10)
       .map((brand) => ({
         ...brand,
@@ -297,56 +289,49 @@ const Home = () => {
 
   return (
     <div className={styles.page}>
-      <section className={styles.hero}>
-        <div
-          className={styles.heroMedia}
-          role="img"
-          aria-label={t('home.heroImageLabel')}
-          style={{ backgroundImage: `url("${heroImageSrc}")` }}
-        />
+      <section
+        className={styles.hero}
+        style={{ '--hero-image': `url('${heroImageSrc}')` }}
+        role="img"
+        aria-label={t('home.heroImageLabel')}
+      >
+        <div className={styles.heroGrid}>
+          <div className={styles.heroContent}>
+            <p className={styles.heroEyebrow}>{t('home.heroEyebrow')}</p>
 
-        <div className={styles.heroContent}>
-          <p className={styles.heroEyebrow}>{t('home.heroEyebrow')}</p>
+            <h1 className={styles.heroTitle}>
+              <span>{t('home.heroTitleLine1')} {t('home.heroTitleLine2')}</span>
+              <em>{t('home.heroTitleLine3')}</em>
+            </h1>
 
-          <h1 className={styles.heroTitle}>
-            <span>{t('home.heroTitleLine1')}</span>
-            <span>{t('home.heroTitleLine2')}</span>
-            <em>{t('home.heroTitleLine3')}</em>
-          </h1>
+            <p className={styles.heroDescription}>{t('home.heroDescription')}</p>
 
-          <p className={styles.heroDescription}>{t('home.heroDescription')}</p>
-
-          <div className={styles.heroActions}>
-            <Link className={styles.primaryButton} to="/shop">
-              {t('common.actions.discoverShop')} <ArrowRight size={14} strokeWidth={2} />
-            </Link>
-            <Link className={styles.secondaryButton} to="/shop?category=mini-size">
-              {t('common.categories.miniSize')}
-            </Link>
-          </div>
-
-          <div className={styles.categoryPills}>
-            {categoryPills.map((pill) => (
-              <Link key={pill.label} className={styles.categoryPill} to={pill.href}>
-                <pill.icon size={13} strokeWidth={1.8} aria-hidden="true" />
-                <span>{pill.label}</span>
+            <div className={styles.heroActions}>
+              <Link className={styles.primaryButton} to="/shop">
+                {t('common.actions.discoverShop')} <ArrowRight size={14} strokeWidth={2} />
               </Link>
-            ))}
+            </div>
           </div>
-
-          <div className={styles.trustCard}>
-            {trustItems.map((item) => (
-              <div key={item.title} className={styles.trustItem}>
-                <item.icon className={styles.trustIcon} size={18} strokeWidth={1.8} aria-hidden="true" />
-                <strong>{item.title}</strong>
-                <span>{item.subtitle}</span>
-              </div>
-            ))}
+          <div className={styles.heroVisual}>
+            <div className={styles.heroImageFrame} aria-hidden="true">
+              <span className={styles.heroImage} />
+            </div>
+            <div className={styles.trustShips}>
+              {trustItems.map((item) => (
+                <div key={item.title} className={styles.trustShip}>
+                  <item.icon className={styles.trustShipIcon} size={20} strokeWidth={2} aria-hidden="true" />
+                  <div className={styles.trustShipText}>
+                    <strong>{item.title}</strong>
+                    <span>{item.subtitle}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className={styles.section}>
+      <section className={`${styles.section} ${styles.selectionsSection}`}>
         <div className={styles.sectionHeader}>
           <div className={styles.sectionHeading}>
             <p className={styles.sectionEyebrow}>{t('home.selectionsEyebrow')}</p>
@@ -359,33 +344,42 @@ const Home = () => {
         </div>
 
         <div className={styles.selectionRail} aria-label={t('home.selectionRailAria')}>
-          {selectionCards.map((card) => (
-            <Link key={card.label} className={styles.selectionCard} to={card.href}>
-              <div className={styles.selectionCopy}>
-                <h3>{card.label}</h3>
-                <p>{card.description}</p>
-                <span>{t('common.actions.discover')}</span>
-              </div>
-
-              {card.sample ? (
-                <img
-                  className={styles.selectionImage}
-                  src={card.sample.image || card.sample.images?.[0] || FALLBACK_IMAGE}
-                  alt={formatPriceText(card.sample.name, card.sample.currency, language)}
-                  loading="lazy"
-                />
-              ) : null}
-            </Link>
-          ))}
+          {selectionCards.map((card, idx) => {
+            // Use landscape demo images for each card
+            const landscapeImages = [
+              '/images/landscape/selection1.jpg',
+              '/images/landscape/selection2.jpg',
+              '/images/landscape/selection3.jpg',
+              '/images/landscape/selection4.jpg',
+              '/images/landscape/selection5.jpg',
+            ];
+            const landscapeImg = landscapeImages[idx % landscapeImages.length];
+            return (
+              <Link key={card.label} className={styles.selectionCard} to={card.href}>
+                <div className={styles.selectionCardImageWrap}>
+                  <img
+                    className={styles.selectionCardImage}
+                    src={landscapeImg}
+                    alt={formatPriceText(card.sample?.name || card.label, card.sample?.currency, language)}
+                    loading="lazy"
+                  />
+                </div>
+                <div className={styles.selectionCardContent}>
+                  <h3>{card.label}</h3>
+                  <p>{card.description}</p>
+                  <span className={styles.selectionCardBtn}>{t('common.actions.discover')}</span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
-      <section className={styles.section}>
+      <section className={`${styles.section} ${styles.brandsSection}`}>
         <div className={styles.sectionHeader}>
           <div className={styles.sectionHeading}>
             <p className={styles.sectionEyebrow}>{t('home.brandsEyebrow')}</p>
-            <h2>{t('home.brandsTitle')}</h2>
-            <p className={styles.sectionSubcopy}>{t('home.brandsSubtitle')}</p>
+            <h2>{t('home.brandsSubtitle')}</h2>
           </div>
 
           <Link className={styles.sectionButton} to="/marques">
@@ -393,21 +387,25 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className={styles.brandGrid} aria-label={t('home.brandsAria')}>
-          {featuredBrands.map((brand) => (
-            <Link key={brand.id} className={styles.brandCard} to={getBrandShopHref(brand.id)}>
-              <span className={styles.brandBadge}>{t(`common.categories.${brand.category}`)}</span>
-              <div className={styles.brandMark}>
-                <BrandMark brand={brand} imageClassName={styles.brandImage} fallbackClassName={styles.brandInitials} />
+        <div className={styles.brandMarquee} aria-label={t('home.brandsAria')}>
+          <div className={styles.brandGrid}>
+            {[0, 1, 2, 3].map((groupIndex) => (
+              <div key={`brand-group-${groupIndex}`} className={styles.brandSet} aria-hidden={groupIndex === 1}>
+                {featuredBrands.map((brand) => (
+                  <Link
+                    key={`${brand.id}-${groupIndex}`}
+                    className={styles.brandCard}
+                    to={getBrandShopHref(brand.id)}
+                    tabIndex={groupIndex === 1 ? -1 : undefined}
+                  >
+                    <div className={styles.brandMark}>
+                      <BrandMark brand={brand} imageClassName={styles.brandImage} fallbackClassName={styles.brandInitials} />
+                    </div>
+                  </Link>
+                ))}
               </div>
-              <strong className={styles.brandName}>{brand.name}</strong>
-              <span className={styles.brandMeta}>
-                {brand.productCount > 0
-                  ? t('home.brandProducts', { count: brand.productCount })
-                  : t('home.brandDiscover')}
-              </span>
-            </Link>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

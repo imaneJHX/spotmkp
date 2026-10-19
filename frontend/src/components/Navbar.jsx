@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Heart, Menu, Search, ShoppingBag, Trash2, UserRound, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -10,7 +10,7 @@ function formatMadAmount(value) {
   return formatPriceMAD({ price: value, currency: 'MAD' });
 }
 
-function navClassName({ isActive }, accent = false) {
+function navClassName(isActive, accent = false) {
   const classes = [styles.navLink];
 
   if (isActive) {
@@ -25,6 +25,7 @@ function navClassName({ isActive }, accent = false) {
 }
 
 const Navbar = () => {
+  const location = useLocation();
   const { itemCount, items, subtotal, removeItem, lastAddedItem, lastActionId } = useCart();
   const { language, setLanguage, languages, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,16 +49,18 @@ const Navbar = () => {
 
   const navItems = useMemo(
     () => [
-      { label: t('common.categories.new'), to: '/shop' },
+      { label: t('common.categories.new'), to: '/shop?sort=newest' },
       { label: t('common.categories.makeup'), to: '/shop?category=makeup' },
       { label: t('common.categories.skincare'), to: '/shop?category=skincare' },
       { label: t('common.categories.perfumes'), to: '/shop?category=perfumes' },
       { label: t('common.categories.miniSize'), to: '/shop?category=mini-size' },
       { label: t('common.categories.brands'), to: '/marques' },
-      { label: t('common.categories.offers'), to: '/shop', accent: true },
+      { label: t('common.categories.offers'), to: '/shop?featured=true', accent: true },
     ],
     [t],
   );
+
+  const currentPath = `${location.pathname}${location.search}`;
 
   const toggleMenu = () => {
     setIsMenuOpen((currentValue) => !currentValue);
@@ -272,16 +275,21 @@ const Navbar = () => {
           </div>
 
           <div className={`${styles.secondaryRow} ${isMenuOpen ? styles.secondaryRowOpen : ''}`}>
-            {navItems.map((item) => (
-              <NavLink
-                key={item.label}
-                className={(state) => navClassName(state, item.accent)}
-                to={item.to}
-                onClick={closeMenu}
-              >
-                {item.label}
-              </NavLink>
-            ))}
+            {navItems.map((item) => {
+              const isActive = currentPath === item.to;
+
+              return (
+                <Link
+                  key={item.label}
+                  className={navClassName(isActive, item.accent)}
+                  to={item.to}
+                  aria-current={isActive ? 'page' : undefined}
+                  onClick={closeMenu}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
         </nav>
       </header>

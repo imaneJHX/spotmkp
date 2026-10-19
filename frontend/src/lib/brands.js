@@ -1,6 +1,18 @@
 import brands from '../data/brands';
 
 const LOCAL_LOGO_EXTENSIONS = ['svg', 'png', 'webp', 'jpg', 'jpeg'];
+export const LOCAL_BRAND_LOGO_IDS = new Set([
+  'anastasia-beverly-hills',
+  'benefit-cosmetics',
+  'clinique',
+  'elf-cosmetics',
+  'fenty-beauty',
+  'lancome',
+  'mac',
+  'nyx',
+  'rare-beauty',
+  'tarte',
+]);
 
 function normalizeValue(value) {
   return String(value || '')
@@ -39,6 +51,11 @@ export function getLocalBrandLogoCandidates(brandId) {
   }
 
   return LOCAL_LOGO_EXTENSIONS.map((extension) => `/brands/${brandId}.${extension}`);
+}
+
+export function hasLocalBrandLogo(brandOrId) {
+  const brandId = typeof brandOrId === 'string' ? brandOrId : brandOrId?.id;
+  return LOCAL_BRAND_LOGO_IDS.has(normalizeBrandKey(brandId));
 }
 
 export function getBrandfetchLogoCandidates(domain, clientId) {
@@ -82,26 +99,17 @@ export function resolveBrandLogo(brand, clientId) {
 
 export function matchesBrand(product, brandOrId) {
   const productBrand = normalizeValue(product?.brand);
-  const productName = normalizeValue(product?.name);
+
+  if (!productBrand) {
+    return false;
+  }
 
   const brand = typeof brandOrId === 'string' ? getBrandById(brandOrId) : brandOrId;
   const aliases = brand ? getBrandAliases(brand) : [brandOrId];
 
   return aliases.some((alias) => {
     const normalizedAlias = normalizeValue(alias);
-    if (!normalizedAlias) {
-      return false;
-    }
-
-    if (productBrand === normalizedAlias) {
-      return true;
-    }
-
-    if (normalizedAlias.length < 3 || !productName) {
-      return false;
-    }
-
-    return ` ${productName} `.includes(` ${normalizedAlias} `) || productName.startsWith(normalizedAlias);
+    return normalizedAlias && productBrand === normalizedAlias;
   });
 }
 

@@ -34,6 +34,44 @@ function parseBrandParam(searchParams) {
   return brand?.id || '';
 }
 
+function parseSortParam(searchParams) {
+  return searchParams.get('sort') === 'newest' ? 'newest' : '';
+}
+
+function parseFeaturedParam(searchParams) {
+  return searchParams.get('featured') === 'true';
+}
+
+function getProductOrderValue(product) {
+  const numericId = Number(product?.id ?? product?._id ?? 0);
+  return Number.isFinite(numericId) ? numericId : 0;
+}
+
+function isOfferProduct(product) {
+  const badge = String(product?.badge || '').toLowerCase();
+  const price = Number(product?.priceValue ?? product?.price ?? 0);
+
+  return (
+    badge.includes('under') ||
+    badge.includes('sale') ||
+    badge.includes('offer') ||
+    badge.includes('deal') ||
+    badge.includes('promo') ||
+    badge.includes('discount') ||
+    (Number.isFinite(price) && price > 0 && price <= 25)
+  );
+}
+
+const SHOP_HERO_BACKGROUNDS = {
+  default: '/images/hero/homepage-hero.jpg',
+  newest: '/images/landscape/selection2.jpg',
+  makeup: '/images/landscape/selection3.jpg',
+  skincare: '/images/landscape/selection4.jpg',
+  perfumes: '/images/landscape/selection5.jpg',
+  'mini-size': '/images/landscape/selection1.jpg',
+  offers: '/images/hero/offers-hero.jpg',
+};
+
 const Shop = () => {
   const { t, language } = useLanguage();
   const hasLocalProducts = localProducts.length > 0;
@@ -46,6 +84,8 @@ const Shop = () => {
   const [previewProduct, setPreviewProduct] = useState(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const selectedBrandId = parseBrandParam(searchParams);
+  const selectedSort = parseSortParam(searchParams);
+  const showFeaturedOffers = parseFeaturedParam(searchParams);
   const activeBrand = selectedBrandId ? getBrandById(selectedBrandId) : null;
 
   useEffect(() => {
@@ -93,8 +133,17 @@ const Shop = () => {
 
   const visibleProducts = useMemo(() => {
     const categoryProducts = filterProductsByShopCategory(products, selectedCategory);
-    return selectedBrandId ? filterProductsByBrand(categoryProducts, selectedBrandId) : categoryProducts;
-  }, [products, selectedBrandId, selectedCategory]);
+    const brandProducts = selectedBrandId ? filterProductsByBrand(categoryProducts, selectedBrandId) : categoryProducts;
+    const collectionProducts = showFeaturedOffers ? brandProducts.filter(isOfferProduct) : brandProducts;
+
+    if (selectedSort === 'newest') {
+      return [...collectionProducts].sort((firstProduct, secondProduct) => (
+        getProductOrderValue(secondProduct) - getProductOrderValue(firstProduct)
+      ));
+    }
+
+    return collectionProducts;
+  }, [products, selectedBrandId, selectedCategory, selectedSort, showFeaturedOffers]);
 
   const allBrands = useMemo(() => {
     return Array.from(new Set(products.map((product) => product.brand).filter(Boolean)));
@@ -114,8 +163,16 @@ const Shop = () => {
   }, [language, products, selectedBrandId]);
 
   const activeCategoryLabel = useMemo(() => {
+    if (showFeaturedOffers) {
+      return t('common.categories.offers');
+    }
+
+    if (selectedSort === 'newest') {
+      return t('common.categories.new');
+    }
+
     return getShopCategoryLabel(selectedCategory, language);
-  }, [language, selectedCategory]);
+  }, [language, selectedCategory, selectedSort, showFeaturedOffers, t]);
 
   const activeCategoryMeta = useMemo(() => {
     const metaMap = {
@@ -142,9 +199,20 @@ const Shop = () => {
     };
 
     const baseMeta = metaMap[selectedCategory] || metaMap[DEFAULT_SHOP_CATEGORY];
+    const collectionMeta = showFeaturedOffers
+      ? {
+          heading: t('common.categories.offers'),
+          description: t('home.themes.bestDescription'),
+        }
+      : selectedSort === 'newest'
+        ? {
+            heading: t('common.categories.new'),
+            description: t('home.themes.newDescription'),
+          }
+        : baseMeta;
 
     if (!activeBrand) {
-      return baseMeta;
+      return collectionMeta;
     }
 
     return {
@@ -154,7 +222,20 @@ const Shop = () => {
         category: activeCategoryLabel,
       }),
     };
-  }, [activeBrand, activeCategoryLabel, selectedCategory, t]);
+  }, [activeBrand, activeCategoryLabel, selectedCategory, selectedSort, showFeaturedOffers, t]);
+
+  const heroBackgroundImage = useMemo(() => {
+    if (showFeaturedOffers) {
+      return SHOP_HERO_BACKGROUNDS.offers;
+    }
+
+    if (selectedSort === 'newest') {
+      return SHOP_HERO_BACKGROUNDS.newest;
+    }
+
+    return SHOP_HERO_BACKGROUNDS[selectedCategory] || SHOP_HERO_BACKGROUNDS.default;
+  }, [selectedCategory, selectedSort, showFeaturedOffers]);
+
   const hasFilteredResults = visibleProducts.length > 0;
   const brandCount =
     hasFilteredResults ? visibleBrands.length : selectedCategory === DEFAULT_SHOP_CATEGORY ? allBrands.length : 0;
@@ -232,7 +313,7 @@ const Shop = () => {
 
   return (
     <div className={styles.page}>
-      <section className={styles.hero}>
+      <section className={styles.hero} style={{ '--shop-hero-image': `url('${heroBackgroundImage}')` }}>
         <div className={styles.heroContent}>
           <span className={styles.eyebrow}>{t('shop.eyebrow')}</span>
           <h1>{activeCategoryMeta.heading}</h1>

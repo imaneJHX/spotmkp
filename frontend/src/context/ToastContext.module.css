@@ -13,7 +13,7 @@
   padding: 14px 16px;
   border-radius: 18px;
   color: var(--color-accent-dark);
-  font-size: 0.94rem;
+  font-size: var(--text-base);
   font-weight: 800;
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.82), transparent 32%),

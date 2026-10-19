@@ -87,7 +87,7 @@
 
 .brand {
   color: var(--color-muted);
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -96,7 +96,7 @@
 .title {
   color: var(--color-text);
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 500;
   line-height: 1.35;
 }
@@ -117,20 +117,20 @@
 .ratingValue,
 .reviewCount {
   color: var(--color-muted);
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 
 .price {
   color: var(--color-accent);
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: var(--text-md);
   font-weight: 600;
   line-height: 1;
 }
 
 .description {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: var(--text-sm);
   line-height: 1.7;
 }
 
@@ -142,7 +142,7 @@
 
 .selectorLabel {
   color: var(--color-text);
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -154,7 +154,7 @@
   border: 0.5px solid var(--color-border);
   border-radius: 999px;
   color: var(--color-text);
-  font-size: 12px;
+  font-size: var(--text-sm);
   background: rgba(255, 255, 255, 0.92);
 }
 
@@ -175,7 +175,7 @@
   padding: 0 18px;
   border-radius: 999px;
   color: #ffffff;
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -190,7 +190,7 @@
 .detailLink {
   align-self: flex-start;
   color: var(--color-muted);
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 500;
   text-decoration: underline;
   text-decoration-color: transparent;

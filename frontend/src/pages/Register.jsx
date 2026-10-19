@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail, Sparkles, UserRound } from 'lucide-react';
+import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail, UserRound } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import api, { getApiErrorMessage } from '../lib/api';
 import styles from './Register.module.css';
@@ -30,16 +30,13 @@ const Register = () => {
       <div className={styles.layout}>
         <aside className={styles.brandPanel}>
           <div className={styles.brandTop}>
-            <div className={styles.brandMark}>BS</div>
-            <span className={styles.brandName}>Beauty Spot</span>
+            <Link className={styles.brandLogo} to="/" aria-label={t('navbar.homeAria')}>
+              <strong>Beauty Spot</strong>
+              <span>{t('navbar.brandTagline')}</span>
+            </Link>
           </div>
 
           <div className={styles.brandContent}>
-            <div className={styles.kicker}>
-              <Sparkles size={16} strokeWidth={2.2} />
-              <span>{t('register.kicker')}</span>
-            </div>
-
             <h1 className={styles.title}>{t('register.title')}</h1>
             <p className={styles.description}>{t('register.description')}</p>
           </div>
@@ -59,7 +56,6 @@ const Register = () => {
         <div className={styles.formShell}>
           <div className={styles.formCard}>
             <div className={styles.formHeader}>
-              <div className={styles.formLogo}>Beauty Spot</div>
               <h2 className={styles.formTitle}>{t('register.formTitle')}</h2>
               <p className={styles.formSubtitle}>{t('register.formSubtitle')}</p>
             </div>

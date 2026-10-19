@@ -14,13 +14,32 @@
 }
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
   gap: 22px;
-  padding: clamp(24px, 4vw, 34px);
+  min-height: 330px;
+  padding: clamp(28px, 5vw, 48px);
+  overflow: hidden;
+  background-image: var(--brands-hero-image, url('/images/hero/homepage-hero.jpg'));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.82), transparent 30%),
-    linear-gradient(145deg, rgba(255, 250, 247, 0.98), rgba(247, 238, 239, 0.96));
+    linear-gradient(90deg, rgba(16, 10, 9, 0.82) 0%, rgba(16, 10, 9, 0.58) 46%, rgba(16, 10, 9, 0.2) 100%),
+    linear-gradient(180deg, rgba(16, 10, 9, 0.12), rgba(16, 10, 9, 0.42));
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .heroCopy {
@@ -30,8 +49,8 @@
 
 .eyebrow {
   display: inline-block;
-  color: var(--color-accent-deep);
-  font-size: 0.72rem;
+  color: rgba(255, 226, 221, 0.95);
+  font-size: var(--text-xs);
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -40,43 +59,51 @@
 .heroCopy h1 {
   margin: 0;
   max-width: 12ch;
-  color: var(--color-ink);
+  color: #ffffff;
   font-family: var(--font-display);
-  font-size: clamp(2.9rem, 5.4vw, 4.4rem);
+  font-size: var(--text-hero);
   line-height: 0.96;
-  letter-spacing: -0.05em;
+  letter-spacing: 0;
+  text-shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
 }
 
 .heroCopy p:last-child {
   max-width: 42ch;
   margin: 0;
-  color: var(--color-copy);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.72;
 }
 
 .heroStats {
   display: grid;
   gap: 12px;
+  align-self: center;
+  padding: 18px;
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(14px);
 }
 
 .statCard {
   padding: 18px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: inset 0 0 0 1px rgba(75, 38, 49, 0.06);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
 .statCard strong {
   display: block;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 1.7rem;
+  font-size: var(--text-xl);
   line-height: 1;
 }
 
 .statCard span {
   color: var(--color-muted);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -111,7 +138,7 @@
   border: 0;
   background: transparent;
   color: var(--color-ink);
-  font-size: 0.96rem;
+  font-size: var(--text-base);
 }
 
 .searchField input::placeholder {
@@ -130,7 +157,7 @@
   min-height: 42px;
   padding: 10px 12px;
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   transition:
     transform 0.24s ease,
@@ -164,10 +191,6 @@
 
 .gridSection {
   margin-top: 28px;
-  padding: clamp(18px, 3vw, 28px);
-  border-radius: 28px;
-  background:
-    linear-gradient(180deg, rgba(255, 250, 251, 0.94), rgba(252, 244, 241, 0.96));
 }
 
 .gridHeader {
@@ -182,13 +205,13 @@
 .gridHeader p {
   margin: 0;
   color: var(--color-muted);
-  font-size: 0.92rem;
+  font-size: var(--text-base);
   font-weight: 600;
 }
 
 .viewAllLink {
   color: var(--color-accent-deep);
-  font-size: 0.84rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -197,31 +220,31 @@
 .loadingText {
   margin: 0 0 14px;
   color: var(--color-muted);
-  font-size: 0.88rem;
+  font-size: var(--text-sm);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(14px, 2vw, 22px);
+  gap: 18px;
 }
 
 .card {
   position: relative;
   min-width: 0;
-  min-height: 238px;
-  padding: 22px 18px 24px;
+  min-height: 188px;
+  padding: 18px 18px 20px;
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 14px;
-  border-radius: 24px;
-  border: 1px solid rgba(225, 203, 198, 0.78);
+  gap: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(228, 213, 206, 0.86);
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.98), transparent 42%),
-    linear-gradient(180deg, #fffefd 0%, #fff7f7 54%, #fbf1ee 100%);
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.94), transparent 44%),
+    linear-gradient(180deg, #fffefd 0%, #fbf5f2 100%);
   text-align: center;
-  box-shadow: 0 16px 34px rgba(69, 40, 48, 0.07);
+  box-shadow: 0 14px 28px rgba(43, 31, 28, 0.04);
   transition:
     transform 0.24s ease,
     box-shadow 0.24s ease,
@@ -230,75 +253,64 @@
 
 .card:hover,
 .card:focus-visible {
-  transform: translateY(-6px);
-  border-color: rgba(204, 111, 128, 0.34);
-  box-shadow: 0 24px 46px rgba(104, 54, 69, 0.12);
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(201, 114, 106, 0.24);
+  box-shadow: 0 22px 40px rgba(43, 31, 28, 0.08);
+}
+
+.cardCategory {
+  position: absolute;
+  top: 14px;
+  inset-inline-start: 14px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-muted);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .logoShell {
-  width: min(100%, 220px);
+  width: min(100%, 164px);
   min-width: 0;
-  height: 116px;
+  height: 84px;
   display: grid;
   place-items: center;
-  padding: 16px 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: inset 0 0 0 1px rgba(228, 205, 202, 0.82);
-  overflow: hidden;
+  padding: 10px 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(228, 213, 206, 0.9);
 }
 
 .logoImage {
-  width: 100%;
-  max-width: 188px;
-  height: 100%;
-  max-height: 82px;
+  width: auto;
+  max-width: 150px;
+  height: auto;
+  max-height: 54px;
   object-fit: contain;
-  transition: transform 0.28s ease;
 }
 
-.card:hover .logoImage,
-.card:focus-visible .logoImage {
-  transform: scale(1.045);
-}
-
-.logoFallback {
-  max-width: 100%;
-  color: var(--color-accent-deep);
+.initials {
+  color: var(--color-accent);
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.2vw, 2.15rem);
-  font-weight: 700;
-  line-height: 1.08;
-  overflow-wrap: anywhere;
+  font-size: var(--text-xl);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .name {
   max-width: 100%;
-  color: #7b3848;
-  font-family: var(--font-display), "Playfair Display", "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.38rem, 1.72vw, 1.78rem);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  font-size: var(--text-base);
+  line-height: 1.35;
   overflow-wrap: anywhere;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.82);
-  transition:
-    color 0.24s ease,
-    transform 0.24s ease,
-    letter-spacing 0.24s ease;
-}
-
-.card:hover .name,
-.card:focus-visible .name {
-  color: #9a4e62;
-  letter-spacing: 0.055em;
-  transform: translateY(-1px);
 }
 
 .count {
   color: var(--color-muted);
-  font-size: 0.84rem;
-  font-weight: 600;
+  font-size: var(--text-xs);
   line-height: 1.5;
 }
 
@@ -311,7 +323,7 @@
   margin: 0 0 10px;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: var(--text-2xl);
   line-height: 1;
 }
 
@@ -359,14 +371,8 @@
   }
 
   .card {
-    min-height: 206px;
+    min-height: 172px;
     padding: 16px 14px 18px;
-    border-radius: 20px;
-  }
-
-  .logoShell {
-    height: 96px;
-    border-radius: 18px;
   }
 }
 
@@ -376,15 +382,10 @@
   }
 
   .heroCopy h1 {
-    font-size: clamp(2.35rem, 12vw, 3.2rem);
+    font-size: var(--text-2xl);
   }
 
   .controls {
     padding: 16px;
-  }
-
-  .gridSection {
-    padding: 14px;
-    border-radius: 22px;
   }
 }

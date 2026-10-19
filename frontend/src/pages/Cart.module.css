@@ -31,7 +31,7 @@
 
 .eyebrow {
   color: var(--color-accent-deep);
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -41,7 +41,7 @@
 .emptyState h2 {
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-size: var(--text-hero);
   line-height: 0.94;
   letter-spacing: -0.05em;
 }
@@ -72,7 +72,7 @@
 .orderMeta span,
 .itemMeta span {
   color: var(--color-accent-deep);
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -82,13 +82,13 @@
 .orderMeta strong {
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-size: var(--text-2xl);
   line-height: 0.94;
 }
 
 .summaryCard p {
   color: var(--color-muted);
-  font-size: 0.92rem;
+  font-size: var(--text-base);
   line-height: 1.6;
 }
 
@@ -142,7 +142,7 @@
 
 .itemMeta strong {
   color: var(--color-ink);
-  font-size: 1.06rem;
+  font-size: var(--text-md);
   line-height: 1.45;
 }
 
@@ -191,7 +191,7 @@
 .itemActions strong {
   color: var(--color-accent-deep);
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: var(--text-xl);
   line-height: 1;
 }
 
@@ -205,7 +205,7 @@
   justify-content: center;
   gap: 9px;
   border-radius: 16px;
-  font-size: 0.92rem;
+  font-size: var(--text-base);
   font-weight: 800;
   transition:
     transform 0.24s ease,

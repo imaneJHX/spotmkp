@@ -50,6 +50,28 @@ function getProductRating(product) {
   return Math.min(5, Math.max(4.2, baseScore + Math.min(0.3, priceSignal / 1000)));
 }
 
+function getCategoryToneClass(category) {
+  const normalizedCategory = String(category || '').toLowerCase().replace(/[-_\s]+/g, ' ');
+
+  if (/makeup|maquillage/.test(normalizedCategory)) {
+    return styles.categoryMakeup;
+  }
+
+  if (/skin|soin/.test(normalizedCategory)) {
+    return styles.categorySkincare;
+  }
+
+  if (/perfume|perfumes|fragrance|parfum/.test(normalizedCategory)) {
+    return styles.categoryPerfume;
+  }
+
+  if (/mini/.test(normalizedCategory)) {
+    return styles.categoryMini;
+  }
+
+  return styles.categoryDefault;
+}
+
 const ProductCard = ({ product, onAddToCart, onPreview }) => {
   const { t, language } = useLanguage();
   const initialImage = product.image || product.images?.[0] || FALLBACK_IMAGE;
@@ -61,7 +83,11 @@ const ProductCard = ({ product, onAddToCart, onPreview }) => {
   const wishlistKey = getWishlistKey(product);
   const productName = formatPriceText(product.name, product.currency, language);
   const productBrand = formatDisplayText(product.brand || 'Beauty Spot') || 'Beauty Spot';
+  const categoryLabel = formatCategoryLabel(product.category, language);
+  const categoryToneClass = getCategoryToneClass(product.category);
   const badgeLabel = formatPriceText(product.badge || (product.featured ? 'Featured' : ''), product.currency, language) || null;
+  const priceText = formatPriceMAD(product);
+  const priceParts = priceText.split(/\s+-\s+/).filter(Boolean);
   const isInStock = Number(product.stock || 0) > 0;
   const ratingValue = getProductRating(product);
   const isFragrance =
@@ -182,8 +208,17 @@ const ProductCard = ({ product, onAddToCart, onPreview }) => {
         </div>
 
         <div className={styles.metaRow}>
-          <span className={styles.category}>{formatCategoryLabel(product.category, language)}</span>
-          <span className={styles.price}>{formatPriceMAD(product)}</span>
+          <span className={`${styles.category} ${categoryToneClass}`}>{categoryLabel}</span>
+          <span className={priceParts.length > 1 ? `${styles.price} ${styles.priceRange}` : styles.price}>
+            {priceParts.length > 1 ? (
+              <>
+                <span>{priceParts[0]}</span>
+                <span>{priceParts[1]}</span>
+              </>
+            ) : (
+              priceText
+            )}
+          </span>
         </div>
 
         <div className={styles.ratingRow} aria-label={t('common.misc.ratingOutOfFive', { value: ratingValue.toFixed(1) })}>
